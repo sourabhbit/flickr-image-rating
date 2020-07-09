@@ -1,0 +1,40 @@
+
+<div class="row">
+    
+    <div class="col-sm-12 food-list">
+      <div class="loader" *ngIf="showLoader"> </div>
+    </div>
+    <div *ngIf="foodList" id="images">
+    <div class="col-sm-4 food-list" *ngFor="let food of foodList | paginate: { itemsPerPage: 30, currentPage: p }">
+        <div class="card food-item">
+          <a href="javascript:void(0);" (click)="foodSelected(food)">
+            <div class="food-image">
+              <img class="card-img-top hoverable" height="200px" width="200px" [src]="getImageUrl(food)" alt="Food image">
+            </div>
+            <div class="card-body food-content">
+              <div class="row" style="margin-top:15px; margin-left: 30px;">
+                <div class="col-sm-12 col-md-6">
+                  <ngx-stars class="stars" [readonly]="true" [color]="'#0097e6'" [size]="1"  [maxStars]="10" [initialStars]="checkAlreadyReviewed(food.id)"></ngx-stars>
+                </div>
+
+                <!-- <div class="col-sm-12 col-md-6">
+                   <input type="text" [value]=checkAlreadyReviewerName(food.id) readonly/>
+                </div> -->
+              </div>
+          </div>
+        </a>
+      </div>
+      
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6" style="margin-top: 30px; margin-bottom: 30px; background-color: white;">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>    
+    </div>
+    <div class="col-sm-3"></div>
+</div>
+
+
+  
